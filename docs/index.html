@@ -121,7 +121,7 @@
       <h2 class="title is-3">Main idea</h2>
       <div class="row">
         <div class="col-lg-16 text-white">
-          <img class="img-fluid mb-3" src="static/images/teaser.svg" alt="AdaptiveAE Teaser" style="width: 100%;">
+          <img class="img-fluid mb-3" src="static/images/teaser.pdf" alt="AdaptiveAE Teaser" style="width: 100%;">
         </div>
       </div>      
       <div class="content has-text-justified is-four-fifths">
@@ -133,27 +133,41 @@
   </div>
 </section>
 
-<!-- Method Pipeline -->
+<!-- Main Pipeline -->
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container is-max-desktop">
-      <h2 class="title is-3">Method Pipeline</h2>
+      <h2 class="title is-3">Method Overview</h2>
       <div class="row">
         <div class="col-lg-16 text-white">
-          <img class="img-fluid mb-3" src="static/images/main_pipeline.svg" alt="AdaptiveAE Main Pipeline" style="width: 100%; margin-bottom: 20px;">
+          <img class="img-fluid mb-3" src="static/images/main_pipeline.pdf" alt="AdaptiveAE Main Pipeline" style="width: 100%;">
         </div>
       </div>
-      <div class="row">
-        <div class="col-lg-16 text-white">
-          <img class="img-fluid mb-3" src="static/images/side_pipeline.svg" alt="AdaptiveAE Side Pipeline" style="width: 100%;">
-        </div>
-      </div>      
-      <div class="content has-text-justified is-four-fifths">
+      <div class="content has-text-justified">
         <p>
-          Our AdaptiveAE method employs a reinforcement learning framework to adaptively select optimal ISO and shutter speed combinations for HDR imaging in dynamic scenes. The pipeline consists of three main components: (1) a preview-based scene analyzer that extracts semantic and motion information, (2) a policy network that predicts optimal exposure parameters, and (3) an HDR reconstruction module that fuses the captured images with different exposures.
+          <strong>Figure 1:</strong> Overview of our AdaptiveAE method. Our approach employs a reinforcement learning framework to adaptively select optimal ISO and shutter speed combinations for HDR imaging in dynamic scenes. The pipeline consists of three main components: (1) a preview-based scene analyzer that extracts semantic and motion information, (2) a policy network that predicts optimal exposure parameters, and (3) an HDR reconstruction module that fuses the captured images with different exposures.
         </p>
       </div>
+    </div>
   </div>
+</section>
+
+<!-- Side Pipeline -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Detailed Architecture</h2>
+      <div class="row">
+        <div class="col-lg-16 text-white">
+          <img class="img-fluid mb-3" src="static/images/side_pipeline.pdf" alt="AdaptiveAE Side Pipeline" style="width: 100%;">
+        </div>
+      </div>
+      <div class="content has-text-justified">
+        <p>
+          <strong>Figure 2:</strong> Detailed architecture of the AdaptiveAE system. This figure shows the specific components and data flow within our reinforcement learning framework, including the policy network architecture, reward mechanism, and the integration between the exposure parameter prediction and HDR reconstruction modules.
+        </p>
+      </div>
+    </div>
   </div>
 </section>
 
