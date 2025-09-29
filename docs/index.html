@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AdaptiveAE: An Adaptive Exposure Strategy for HDR Capturing in Dynamic Scenes
+  </title>
+  <link rel="icon" type="image/x-icon" href="static/images/noise.svg">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link href="static/css/twentytwenty-no-compass.css" rel="stylesheet" type="text/css" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+  <script src="static/js/video_comparison.js"></script>
+</head>
+
+<body>
+
+<section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">AdaptiveAE: An Adaptive Exposure Strategy for HDR Capturing in Dynamic Scenes</h1>
+              <br>
+              <strong>ICCV 2025</strong>
+              <br><br>
+              <div class="is-size-5 publication-authors">
+                <!-- Paper authors -->
+                <span class="author-block">
+                  <a href="#">Tianyi Xu</a><sup>1,3,4*</sup>,</span>
+                <span class="author-block">
+                  <a href="#">Fan Zhang</a><sup>1</sup>,</span>
+                <span class="author-block">
+                  <a href="#">Boxin Shi</a><sup>3,4†</sup>,</span>
+                <span class="author-block">
+                  <a href="https://tianfan.info/">Tianfan Xue</a><sup>2,1†</sup>,</span>
+                <span class="author-block">
+                  <a href="#">Yujin Wang</a><sup>1†</sup>,</span>
+                </div>
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block"><sup>1</sup>Shanghai AI Laboratory,</span>
+                    <span class="author-block"><sup>2</sup>The Chinese University of Hong Kong,</span>
+                    <span class="author-block"><sup>3</sup>State Key Laboratory of Multimedia Information Processing, School of Computer Science, Peking University,</span>
+                    <span class="author-block"><sup>4</sup>National Engineering Research Center of Visual Technology, School of Computer Science, Peking University</span>
+                  </div>
+                  <br>
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                    <span class="link-block">
+                        <a href="#" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>arXiv</span>
+                      </a>
+                    </span>
+                    <span class="link-block">
+                      <a href="#" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fab fa-github"></i>
+                        </span>
+                        <span>Code</span>
+                      </a>
+                    </span>
+                    <span class="link-block">
+                      <a href="#" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fab fa-github"></i>
+                        </span>
+                        <span>Data</span>
+                      </a>
+                    </span>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<!-- Paper abstract -->
+<section class="section hero is-small">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Mainstream high dynamic range imaging techniques typically rely on fusing multiple images captured with different exposure setups (shutter speed and ISO). A good balance between shutter speed and ISO is crucial for achieving high-quality HDR, as high ISO values introduce significant noise, while long shutter speeds can lead to noticeable motion blur. However, existing methods often overlook the complex interaction between shutter speed and ISO and fail to account for motion blur effects in dynamic scenes.
+          </p>
+          <p>
+            In this work, we propose AdaptiveAE, a reinforcement learning-based method that optimizes the selection of shutter speed and ISO combinations to maximize HDR reconstruction quality in dynamic environments. AdaptiveAE integrates an image synthesis pipeline that incorporates motion blur and noise simulation into our training procedure, leveraging semantic information and exposure histograms. It can adaptively select optimal ISO and shutter speed sequences based on a user-defined exposure time budget, and find a better exposure schedule than traditional solutions. Experimental results across multiple datasets demonstrate that it achieves the state-of-the-art performance.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+<!-- Main idea -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Main idea</h2>
+      <div class="row">
+        <div class="col-lg-16 text-white">
+          <img class="img-fluid mb-3" src="static/images/teaser.pdf" alt="AdaptiveAE Teaser" style="width: 100%;">
+        </div>
+      </div>      
+      <div class="content has-text-justified is-four-fifths">
+        <p>
+          <strong>AdaptiveAE</strong> takes camera preview images as input and automatically predicts the ISO and shutter speed for each LDR captures for exposure fusion through a 3-stage sequential refinement procedure to achieve an optimal balance between noise level and motion-related problems for high quality HDR capturing in dynamic scenes with deep reinforcement learning. AdaptiveAE achieves PSNR 39.7 on HDRV dataset, while baseline methods that either only predicts shutter speed or do not consider motion can only achieve PSNR below 37.6 and has evident motion blur and ghosting artifacts in HDR results.
+        </p>
+      </div>
+  </div>
+  </div>
+</section>
+
+<!-- Method Pipeline -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Method Pipeline</h2>
+      <div class="row">
+        <div class="col-lg-16 text-white">
+          <img class="img-fluid mb-3" src="static/images/main_pipeline.pdf" alt="AdaptiveAE Main Pipeline" style="width: 100%; margin-bottom: 20px;">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-16 text-white">
+          <img class="img-fluid mb-3" src="static/images/side_pipeline.pdf" alt="AdaptiveAE Side Pipeline" style="width: 100%;">
+        </div>
+      </div>      
+      <div class="content has-text-justified is-four-fifths">
+        <p>
+          Our AdaptiveAE method employs a reinforcement learning framework to adaptively select optimal ISO and shutter speed combinations for HDR imaging in dynamic scenes. The pipeline consists of three main components: (1) a preview-based scene analyzer that extracts semantic and motion information, (2) a policy network that predicts optimal exposure parameters, and (3) an HDR reconstruction module that fuses the captured images with different exposures.
+        </p>
+      </div>
+  </div>
+  </div>
+</section>
+
+<!-- Video Presentation -->
+<section class="hero is-small is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <!-- Paper video. -->
+      <h2 class="title is-3">Video Presentation</h2>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <video poster="" id="tree" autoplay controls muted loop height="100%">
+            <!-- Your video here -->
+            <source src="./static/videos/video.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End video -->
+
+<!--BibTex citation -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{xu2025adaptiveae,
+  title={AdaptiveAE: An Adaptive Exposure Strategy for HDR Capturing in Dynamic Scenes},
+  author={Xu, Tianyi and Zhang, Fan and Shi, Boxin and Xue, Tianfan and Wang, Yujin},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  year={2025}
+}</code></pre>
+  </div>
+</section>
+<!--End BibTex citation -->
+
+<footer class="footer">
+<div class="container">
+  <div class="columns is-centered">
+    <div class="column is-8">
+      <div class="content" style="text-align: center;">
+        <p>
+          This website was modified from <a href="https://nerfies.github.io" target="_blank">Nerfies</a>. Thanks for sharing this fantastic template. <br> 
+          Also, this website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+          Commons Attribution-ShareAlike 4.0 International License</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+</footer>
+
+  <script src="static/js/jquery.min.js"></script>
+  <script src="static/js/jquery.event.move.js"></script>
+  <script src="static/js/jquery.twentytwenty.js"></script>
+  <script>
+    $(window).load(function(){
+      $(".twentytwenty-container[data='raw-ours']").twentytwenty({default_offset_pct: 0.38, before_label: "Raw-domian Denoising", after_label: "Dual-domian Denoising (Ours)", move_slider_on_hover: false, click_to_move: true});
+      $(".twentytwenty-container[data='sRGB-ours']").twentytwenty({default_offset_pct: 0.38, before_label: "sRGB-domian Denoising", after_label: "Dual-domian Denoising (Ours)", move_slider_on_hover: false, click_to_move: true});
+      $(".twentytwenty-container[data='ISP-ours']").twentytwenty({default_offset_pct: 0.38, before_label: "Camera ISPs", after_label: "DualDn (Ours)", move_slider_on_hover: false, click_to_move: true});
+    });
+    </script>
+
+</body>
+
+</html>
