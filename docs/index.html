@@ -145,7 +145,7 @@
       </div>
       <div class="content has-text-justified">
         <p>
-          <strong>Figure 1:</strong> Overview of our AdaptiveAE method. Our approach employs a reinforcement learning framework to adaptively select optimal ISO and shutter speed combinations for HDR imaging in dynamic scenes. The pipeline consists of three main components: (1) a preview-based scene analyzer that extracts semantic and motion information, (2) a policy network that predicts optimal exposure parameters, and (3) an HDR reconstruction module that fuses the captured images with different exposures.
+          <strong>Figure 1:</strong> Training pipeline of our method. The ISO and shutter speed prediction process is conceptualized as a Markov Decision Process, where a CNN-based policy network predicts the ISO and shutter speed of the next exposure sets. Concurrently, a CNN-based value network estimates the state value. We leverage our blur-aware image synthesis pipeline to synthesize the predicted LDRs and employ DeepHDR to fuse the predicted LDR images, generating our HDR result and calculating the reward for the current policy. The entire system is optimized using the A3C (Asynchronous Advantage Actor-Critic) method.
         </p>
       </div>
     </div>
@@ -156,7 +156,7 @@
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container is-max-desktop">
-      <h2 class="title is-3">Detailed Architecture</h2>
+      <h2 class="title is-3">Detailed Sequential Decision Process</h2>
       <div class="row">
         <div class="col-lg-16 text-white">
           <img class="img-fluid mb-3" src="static/images/side_pipeline.svg" alt="AdaptiveAE Side Pipeline" style="width: 100%;">
@@ -164,7 +164,7 @@
       </div>
       <div class="content has-text-justified">
         <p>
-          <strong>Figure 2:</strong> Detailed architecture of the AdaptiveAE system. This figure shows the specific components and data flow within our reinforcement learning framework, including the policy network architecture, reward mechanism, and the integration between the exposure parameter prediction and HDR reconstruction modules.
+          <strong>Figure 2:</strong> The training scheme of AdaptiveAE. States are defined as the three LDRs synthesized using predicted ISOs and shutter speeds. Starting from s0 where the three LDRs has EV {−2, 0, +2} with arbitrary EV 0 baseline, ISOs and shutter speeds, the agent sequentially predicts, customizes or inherits capturing parameters (i.e. ISO and shutter speed) for the next stage and synthesize the corresponding LDR using our image synthesis pipeline. Unlike training, the LDRs will be captured rather than synthesized during inference.
         </p>
       </div>
     </div>
