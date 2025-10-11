@@ -35,8 +35,8 @@
             <div class="column has-text-centered">
               <h1 class="title is-1 publication-title">AdaptiveAE: An Adaptive Exposure Strategy for HDR Capturing in Dynamic Scenes</h1>
               <br>
-              <strong>ICCV 2025</strong>
-              <br><br>
+              <h2 class="title is-3"><strong>ICCV 2025</strong></h2>
+              <br>
               <div class="is-size-5 publication-authors">
                 <!-- Paper authors -->
                 <span class="author-block">
@@ -105,7 +105,7 @@
             Mainstream high dynamic range imaging techniques typically rely on fusing multiple images captured with different exposure setups (shutter speed and ISO). A good balance between shutter speed and ISO is crucial for achieving high-quality HDR, as high ISO values introduce significant noise, while long shutter speeds can lead to noticeable motion blur. However, existing methods often overlook the complex interaction between shutter speed and ISO and fail to account for motion blur effects in dynamic scenes.
           </p>
           <p>
-            In this work, we propose AdaptiveAE, a reinforcement learning-based method that optimizes the selection of shutter speed and ISO combinations to maximize HDR reconstruction quality in dynamic environments. AdaptiveAE integrates an image synthesis pipeline that incorporates motion blur and noise simulation into our training procedure, leveraging semantic information and exposure histograms. It can adaptively select optimal ISO and shutter speed sequences based on a user-defined exposure time budget, and find a better exposure schedule than traditional solutions. Experimental results across multiple datasets demonstrate that it achieves the state-of-the-art performance.
+            In this work, we propose <em>AdaptiveAE</em>, a reinforcement learning-based method that optimizes the selection of shutter speed and ISO combinations to maximize HDR reconstruction quality in dynamic environments. <em>AdaptiveAE</em> integrates an image synthesis pipeline that incorporates motion blur and noise simulation into our training procedure, leveraging semantic information and exposure histograms. It can adaptively select optimal ISO and shutter speed sequences based on a user-defined exposure time budget, and find a better exposure schedule than traditional solutions. Experimental results across multiple datasets demonstrate that it achieves the state-of-the-art performance.
           </p>
         </div>
       </div>
@@ -118,54 +118,20 @@
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container is-max-desktop">
-      <h2 class="title is-3">Main idea</h2>
-      <div class="row">
-        <div class="col-lg-16 text-white">
-          <img class="img-fluid mb-3" src="static/images/teaser.svg" alt="AdaptiveAE Teaser" style="width: 100%;">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full">
+          <h2 class="title is-3">Main idea</h2>
+          <div class="content has-text-justified">
+            <p>
+              <em>AdaptiveAE</em> takes camera preview images as input and automatically predicts the ISO and shutter speed for each LDR captures for exposure fusion through a 3-stage sequential refinement procedure to achieve an optimal balance between noise level and motion-related problems for high quality HDR capturing in dynamic scenes with deep reinforcement learning. <em>AdaptiveAE</em> achieves PSNR 39.7 on HDRV dataset, while baseline methods that either only predicts shutter speed or do not consider motion can only achieve PSNR below 37.6 and has evident motion blur and ghosting artifacts in HDR results.
+            </p>
+          </div>
+          <div class="row">
+            <div class="col-lg-16 text-white">
+              <img class="img-fluid mb-3" src="static/images/teaser.svg" alt="AdaptiveAE Teaser" style="width: 100%;">
+            </div>
+          </div>
         </div>
-      </div>      
-      <div class="content has-text-justified is-four-fifths">
-        <p>
-          <strong>AdaptiveAE</strong> takes camera preview images as input and automatically predicts the ISO and shutter speed for each LDR captures for exposure fusion through a 3-stage sequential refinement procedure to achieve an optimal balance between noise level and motion-related problems for high quality HDR capturing in dynamic scenes with deep reinforcement learning. AdaptiveAE achieves PSNR 39.7 on HDRV dataset, while baseline methods that either only predicts shutter speed or do not consider motion can only achieve PSNR below 37.6 and has evident motion blur and ghosting artifacts in HDR results.
-        </p>
-      </div>
-  </div>
-  </div>
-</section>
-
-<!-- Main Pipeline -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3">Method Overview</h2>
-      <div class="row">
-        <div class="col-lg-16 text-white">
-          <img class="img-fluid mb-3" src="static/images/main_pipeline.svg" alt="AdaptiveAE Main Pipeline" style="width: 100%;">
-        </div>
-      </div>
-      <div class="content has-text-justified">
-        <p>
-          <strong>Figure 1:</strong> Training pipeline of our method. The ISO and shutter speed prediction process is conceptualized as a Markov Decision Process, where a CNN-based policy network predicts the ISO and shutter speed of the next exposure sets. Concurrently, a CNN-based value network estimates the state value. We leverage our blur-aware image synthesis pipeline to synthesize the predicted LDRs and employ DeepHDR to fuse the predicted LDR images, generating our HDR result and calculating the reward for the current policy. The entire system is optimized using the A3C (Asynchronous Advantage Actor-Critic) method.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Side Pipeline -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3">Detailed Sequential Decision Process</h2>
-      <div class="row">
-        <div class="col-lg-16 text-white">
-          <img class="img-fluid mb-3" src="static/images/side_pipeline.svg" alt="AdaptiveAE Side Pipeline" style="width: 100%;">
-        </div>
-      </div>
-      <div class="content has-text-justified">
-        <p>
-          <strong>Figure 2:</strong> The training scheme of AdaptiveAE. States are defined as the three LDRs synthesized using predicted ISOs and shutter speeds. Starting from s0 where the three LDRs has EV {−2, 0, +2} with arbitrary EV 0 baseline, ISOs and shutter speeds, the agent sequentially predicts, customizes or inherits capturing parameters (i.e. ISO and shutter speed) for the next stage and synthesize the corresponding LDR using our image synthesis pipeline. Unlike training, the LDRs will be captured rather than synthesized during inference.
-        </p>
       </div>
     </div>
   </div>
@@ -175,12 +141,10 @@
 <section class="hero is-small is-small">
   <div class="hero-body">
     <div class="container is-max-desktop">
-      <!-- Paper video. -->
-      <h2 class="title is-3">Video Presentation</h2>
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
+          <h2 class="title is-3">Video Presentation</h2>
           <video poster="" id="tree" autoplay controls muted loop height="100%">
-            <!-- Your video here -->
             <source src="./static/videos/video.mp4"
             type="video/mp4">
           </video>
@@ -189,12 +153,60 @@
     </div>
   </div>
 </section>
-<!-- End video -->
+
+<!-- Main Pipeline -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full">
+          <h2 class="title is-3">Method Overview</h2>
+          <div class="content has-text-justified">
+            <p>
+              Training pipeline of our method. The ISO and shutter speed prediction process is conceptualized as a Markov Decision Process, where a CNN-based policy network predicts the ISO and shutter speed of the next exposure sets. Concurrently, a CNN-based value network estimates the state value. We leverage our blur-aware image synthesis pipeline to synthesize the predicted LDRs and employ DeepHDR to fuse the predicted LDR images, generating our HDR result and calculating the reward for the current policy. The entire system is optimized using the A3C (Asynchronous Advantage Actor-Critic) method.
+            </p>
+          </div>
+          <div class="row">
+            <div class="col-lg-16 text-white">
+              <img class="img-fluid mb-3" src="static/images/main_pipeline.svg" alt="AdaptiveAE Main Pipeline" style="width: 100%;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Side Pipeline -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full">
+          <h2 class="title is-3">Detailed Sequential Decision Process</h2>
+          <div class="content has-text-justified">
+            <p>
+              The training scheme of <em>AdaptiveAE</em>. States are defined as the three LDRs synthesized using predicted ISOs and shutter speeds. Starting from s0 where the three LDRs has EV {−2, 0, +2} with arbitrary EV 0 baseline, ISOs and shutter speeds, the agent sequentially predicts, customizes or inherits capturing parameters (i.e. ISO and shutter speed) for the next stage and synthesize the corresponding LDR using our image synthesis pipeline. Unlike training, the LDRs will be captured rather than synthesized during inference.
+            </p>
+          </div>
+          <div class="row">
+            <div class="col-lg-16 text-white">
+              <img class="img-fluid mb-3" src="static/images/side_pipeline.svg" alt="AdaptiveAE Side Pipeline" style="width: 100%;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!--BibTex citation -->
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
+    <div class="has-text-centered">
+      <h2 class="title">BibTeX</h2>
+    </div>
     <pre><code>@inproceedings{xu2025adaptiveae,
   title={AdaptiveAE: An Adaptive Exposure Strategy for HDR Capturing in Dynamic Scenes},
   author={Xu, Tianyi and Zhang, Fan and Shi, Boxin and Xue, Tianfan and Wang, Yujin},
